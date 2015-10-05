@@ -2,13 +2,14 @@
 
 return [
     'factories' => [
-        'Application\\Middleware\\Route\\IndexMiddleware'    => 'Application\\Container\\Middleware\\Route\\IndexMiddlewareFactory',
-        'Application\\Middleware\\Pipe\\CacheMiddleware'     => 'Application\\Container\\Middleware\\Pipe\\CacheMiddlewareFactory',
-        'Application\\Middleware\\Pipe\\RateLimitMiddleware' => 'Application\\Container\\Middleware\\Pipe\\RateLimitMiddlewareFactory',
-        'Doctrine\\Common\\Cache\\Cache'                     => 'Application\\Container\\CacheFactory',
-        'Zend\\Expressive\\Application'                      => 'Zend\\Expressive\\Container\\ApplicationFactory',
-        'Zend\\Expressive\\Template\\TemplateInterface'      => 'Zend\\Expressive\\Container\\Template\\PlatesFactory',
-        'Zend\\Expressive\\FinalHandler'                     => 'Zend\\Expressive\\Container\\TemplatedErrorHandlerFactory',
+        'AndrewCarterUK\\APOD\\APIInterface'                    => 'Application\\Container\\APIFactory',
+        'Application\\Middleware\\Pipe\\CacheMiddleware'        => 'Application\\Container\\Middleware\\Pipe\\CacheMiddlewareFactory',
+        'Application\\Middleware\\Route\\IndexMiddleware'       => 'Application\\Container\\Middleware\\Route\\IndexMiddlewareFactory',
+        'Application\\Middleware\\Route\\PictureListMiddleware' => 'Application\\Container\\Middleware\\Route\\PictureListMiddlewareFactory',
+        'Doctrine\\Common\\Cache\\Cache'                        => 'Application\\Container\\CacheFactory',
+        'Zend\\Expressive\\Application'                         => 'Zend\\Expressive\\Container\\ApplicationFactory',
+        'Zend\\Expressive\\Template\\TemplateInterface'         => 'Zend\\Expressive\\Container\\Template\\PlatesFactory',
+        'Zend\\Expressive\\FinalHandler'                        => 'Zend\\Expressive\\Container\\TemplatedErrorHandlerFactory',
     ],
     'invokables' => [
         'Zend\\Expressive\\Router\\RouterInterface' => 'Zend\\Expressive\\Router\\AuraRouter',
@@ -50,13 +51,18 @@ return [
             ],
             'middleware_pipeline' => [
                 'pre_routing' => [
-                    [ 'middleware' => 'Application\\Middleware\\Pipe\\RateLimitMiddleware' ],
-                    [ 'middleware' => 'Application\\Middleware\\Pipe\\CacheMiddleware'     ],
+                    [ 'middleware' => 'Application\\Middleware\\Pipe\\CacheMiddleware' ],
                 ],
             ],
-            'cache_path'   => 'cache/',
-            'nasa_api_key' => 'DEMO-KEY',
-            'hourly_limit' => 1000,
+            'application' => [
+                'results_per_page' => 24,
+                'cache_path'       => 'cache/',
+                'apod_api'         => [
+                    'api_key'    => 'DEMO-KEY',
+                    'store_path' => 'public/apod',
+                    'base_url'   => '/apod',
+                ],
+            ],
         ],
     ],
 ];
