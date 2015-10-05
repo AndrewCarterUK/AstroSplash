@@ -1,0 +1,16 @@
+{
+    "require": {
+        "zendframework/zend-expressive": "^0.3.0",
+        "aura/router": "^2.3",
+        "zendframework/zend-servicemanager": "^2.6",
+        "doctrine/cache": "~1.4",
+        "league/plates": "^3.1",
+        "guzzlehttp/guzzle": "^6.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Application\\": "src/",
+            "Application\\Test\\": "test/"
+        }
+    }
+}
