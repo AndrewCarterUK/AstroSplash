@@ -1,6 +1,7 @@
 <?php
 
-return array_merge_recursive(
-    include 'config/container.global.php',
-    include 'config/container.local.php'
-);
+foreach (glob('config/container.{global,local}.php', GLOB_BRACE) as $file) {
+    $conf = array_merge_recursive($conf ?: [], include $file);
+}
+
+return $conf;
