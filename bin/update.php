@@ -6,11 +6,25 @@ include 'vendor/autoload.php';
 
 $container = include 'config/container.php';
 
+$shutdown = false;
+
+pcntl_signal(SIGINT, function () use (&$shutdown) {
+    $shutdown = true;    
+});
+
 $container->get('AndrewCarterUK\\APOD\\APIInterface')->updateStore(
-    function (array $picture) {
+    function (array $picture) use (&$shutdown) {
         echo 'Added: '.$picture['title'].PHP_EOL;
+
+        if ($shutdown) {
+            die;
+        }
     },
-    function (\Exception $exception) {
+    function (\Exception $exception) use (&$shutdown) {
         echo (string)$exception.PHP_EOL;
+
+        if ($shutdown) {
+            die;
+        }
     }
 );
