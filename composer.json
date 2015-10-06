@@ -5,7 +5,7 @@
         "zendframework/zend-servicemanager": "^2.6",
         "doctrine/cache": "~1.4",
         "league/plates": "^3.1",
-        "guzzlehttp/guzzle": "^6.1"
+        "andrewcarteruk/astronomy-picture-of-the-day": "*@dev"
     },
     "autoload": {
         "psr-4": {

@@ -4,9 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7444fa8c4e8ebc04403f609b5f784d88",
-    "content-hash": "f39c2fad7a6a747381f84e6161f9caa0",
+    "hash": "6b1608bfffc6f03f830cdb50fb71a901",
+    "content-hash": "f0c4c9fe48b715857c3311a4779769e0",
     "packages": [
+        {
+            "name": "andrewcarteruk/astronomy-picture-of-the-day",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/AndrewCarterUK/astronomy-picture-of-the-day.git",
+                "reference": "23ab4383e83a96a1802ee28c2f052e25a8206bc9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/AndrewCarterUK/astronomy-picture-of-the-day/zipball/23ab4383e83a96a1802ee28c2f052e25a8206bc9",
+                "reference": "23ab4383e83a96a1802ee28c2f052e25a8206bc9",
+                "shasum": ""
+            },
+            "require": {
+                "container-interop/container-interop": "^1.1",
+                "guzzlehttp/guzzle": "^6.1",
+                "intervention/image": "^2.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AndrewCarterUK\\APOD\\": "src/",
+                    "AndrewCarterUK\\APOD\\Test\\": "test/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Carter",
+                    "email": "andrewcarter1992@gmail.com"
+                }
+            ],
+            "description": "A wrapper for the Astronomy Picture of the Day API provided by NASA.",
+            "time": "2015-10-05 23:27:47"
+        },
         {
             "name": "aura/router",
             "version": "2.3.0",
@@ -328,6 +367,68 @@
                 "uri"
             ],
             "time": "2015-08-15 19:32:36"
+        },
+        {
+            "name": "intervention/image",
+            "version": "2.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "1124ff3c6298f0dcf9edf9156623904d7a5c3428"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/1124ff3c6298f0dcf9edf9156623904d7a5c3428",
+                "reference": "1124ff3c6298f0dcf9edf9156623904d7a5c3428",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "3.*"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.net",
+                    "homepage": "http://olivervogel.net/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2015-08-16 15:31:59"
         },
         {
             "name": "league/plates",
@@ -697,7 +798,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "andrewcarteruk/astronomy-picture-of-the-day": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

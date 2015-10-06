@@ -11,10 +11,10 @@ class CacheFactory
     {
         $config = $container->get('config');
 
-        if (!is_array($config) || !isset($config['cache_path'])) {
-            throw new \RuntimeException('cache_path key must be set in config service');
+        if (!isset($config['application']['cache_path'])) {
+            throw new \RuntimeException('cache_path must be set in application configuration');
         }
 
-        return new FilesystemCache($config['cache_path']);
+        return new FilesystemCache($config['application']['cache_path']);
     }
 }

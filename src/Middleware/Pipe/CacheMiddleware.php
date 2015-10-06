@@ -33,7 +33,7 @@ class CacheMiddleware implements MiddlewareInterface
 
     private function getCacheKey(ServerRequestInterface $request)
     {
-        return 'url.'.$request->getUri()->getPath();
+        return 'http-cache:'.$request->getUri()->getPath();
     }
 
     private function getCachedResponse(ServerRequestInterface $request, ResponseInterface $response)
