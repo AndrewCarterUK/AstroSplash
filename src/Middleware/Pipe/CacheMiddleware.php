@@ -43,7 +43,12 @@ class CacheMiddleware implements MiddlewareInterface
 
             if (false !== $item) {
                 $response->getBody()->write($item['body']);
-                return $response->withHeader('Content-Type', $item['type']);
+
+                foreach ($item['headers'] as $name => $value) {
+                    $response = $response->withHeader($name, $value);
+                }
+
+                return $response;
             }
         }
 
@@ -66,9 +71,10 @@ class CacheMiddleware implements MiddlewareInterface
 
                 if ('max-age' === $parts[0] && count($parts) == 2) {
                     $this->cache->save($this->getCacheKey($request), [
-                        'body' => (string) $response->getBody(),
-                        'type' => $response->getHeaderLine('Content-Type'),
+                        'body'    => (string) $response->getBody(),
+                        'headers' => $response->getHeaders(),
                     ], intval($parts[1]));
+                    break;
                 }
             }
         }
