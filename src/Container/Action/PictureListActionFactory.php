@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\Container\Middleware\Route;
+namespace Application\Container\Action;
 
-use Application\Middleware\Route\PictureListMiddleware;
+use Application\Action\PictureListAction;
 use Interop\Container\ContainerInterface;
 
-class PictureListMiddlewareFactory
+class PictureListActionFactory
 {
     public function __invoke(ContainerInterface $container)
     {
@@ -16,6 +16,6 @@ class PictureListMiddlewareFactory
             throw new \RuntimeException('results_per_page must be set in application configuration');
         }
 
-        return new PictureListMiddleware($apodApi, $config['application']['results_per_page']);
+        return new PictureListAction($apodApi, $config['application']['results_per_page']);
     }
 }

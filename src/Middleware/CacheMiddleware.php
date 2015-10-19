@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Middleware\Pipe;
+namespace Application\Middleware;
 
 use Doctrine\Common\Cache\Cache;
 use Psr\Http\Message\ResponseInterface;
@@ -69,7 +69,7 @@ class CacheMiddleware implements MiddlewareInterface
             foreach ($cacheControl as $value) {
                 $parts = explode('=', $value);
 
-                if ('max-age' === $parts[0] && count($parts) == 2) {
+                if (count($parts) == 2 && 'max-age' === $parts[0]) {
                     $this->cache->save($this->getCacheKey($request), [
                         'body'    => (string) $response->getBody(),
                         'headers' => $response->getHeaders(),

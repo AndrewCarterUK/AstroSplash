@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\Container\Middleware\Pipe;
+namespace Application\Container\Middleware;
 
-use Application\Middleware\Pipe\CacheMiddleware;
+use Application\Middleware\CacheMiddleware;
 use Interop\Container\ContainerInterface;
 
 class CacheMiddlewareFactory

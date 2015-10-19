@@ -10,3 +10,4 @@ foreach (glob('config/container.{global,local}.php', GLOB_BRACE) as $file) {
 }
 
 return new ServiceManager(new Config($config));
+

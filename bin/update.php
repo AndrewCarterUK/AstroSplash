@@ -6,9 +6,11 @@ include 'vendor/autoload.php';
 
 $container = include 'config/container.php';
 
+
 $shutdown = false;
 
 declare(ticks = 1);
+
 pcntl_signal(SIGINT, function () use (&$shutdown) {
     $shutdown = true;    
 });

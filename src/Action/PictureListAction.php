@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\Middleware\Route;
+namespace Application\Action;
 
 use AndrewCarterUK\APOD\APIInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Stratigility\MiddlewareInterface;
 
-class PictureListMiddleware implements MiddlewareInterface
+class PictureListAction implements MiddlewareInterface
 {
     private $apodApi;
     private $resultsPerPage;
@@ -18,7 +18,7 @@ class PictureListMiddleware implements MiddlewareInterface
         $this->resultsPerPage = $resultsPerPage;
     }
 
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $out     = null)
+    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $out = null)
     {
         $page     = intval($request->getAttribute('page')) ?: 0;
         $pictures = $this->apodApi->getPage($page, $this->resultsPerPage);
@@ -26,7 +26,7 @@ class PictureListMiddleware implements MiddlewareInterface
         $response->getBody()->write(json_encode($pictures));
 
         return $response
-            ->withHeader('Cache-Control', ['public', 'max-age=5'])
+            ->withHeader('Cache-Control', ['public', 'max-age=3600'])
             ->withHeader('Content-Type', 'application/json');
     }
 }

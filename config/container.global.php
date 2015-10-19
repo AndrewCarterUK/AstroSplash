@@ -2,14 +2,14 @@
 
 return [
     'factories' => [
-        'AndrewCarterUK\\APOD\\APIInterface'                    => 'Application\\Container\\APIFactory',
-        'Application\\Middleware\\Pipe\\CacheMiddleware'        => 'Application\\Container\\Middleware\\Pipe\\CacheMiddlewareFactory',
-        'Application\\Middleware\\Route\\IndexMiddleware'       => 'Application\\Container\\Middleware\\Route\\IndexMiddlewareFactory',
-        'Application\\Middleware\\Route\\PictureListMiddleware' => 'Application\\Container\\Middleware\\Route\\PictureListMiddlewareFactory',
-        'Doctrine\\Common\\Cache\\Cache'                        => 'Application\\Container\\CacheFactory',
-        'Zend\\Expressive\\Application'                         => 'Zend\\Expressive\\Container\\ApplicationFactory',
-        'Zend\\Expressive\\Template\\TemplateInterface'         => 'Zend\\Expressive\\Container\\Template\\PlatesFactory',
-        'Zend\\Expressive\\FinalHandler'                        => 'Zend\\Expressive\\Container\\TemplatedErrorHandlerFactory',
+        'Application\\Action\\IndexAction'                        => 'Application\\Container\\Action\\IndexActionFactory',
+        'Zend\\Expressive\\Application'                           => 'Zend\\Expressive\\Container\\ApplicationFactory',
+        'Zend\\Expressive\\Template\\TemplateRendererInterface'   => 'Zend\\Expressive\\Plates\\PlatesRendererFactory',
+        'Zend\\Expressive\\FinalHandler'                          => 'Zend\\Expressive\\Container\\TemplatedErrorHandlerFactory',
+        'Application\\Middleware\\CacheMiddleware'                => 'Application\\Container\\Middleware\\CacheMiddlewareFactory',
+        'Doctrine\\Common\\Cache\\Cache'                          => 'Application\\Container\\CacheFactory',
+        'AndrewCarterUK\\APOD\\APIInterface'                      => 'Application\\Container\\APIFactory',
+        'Application\\Action\\PictureListAction'                  => 'Application\\Container\\Action\\PictureListActionFactory',
     ],
     'invokables' => [
         'Zend\\Expressive\\Router\\RouterInterface' => 'Zend\\Expressive\\Router\\AuraRouter',
@@ -19,17 +19,17 @@ return [
             'routes' => [
                 [
                     'path'            => '/',
-                    'middleware'      => 'Application\\Middleware\\Route\\IndexMiddleware',
+                    'middleware'      => 'Application\\Action\\IndexAction',
                     'allowed_methods' => ['GET'],
                 ],
                 [
                     'path'            => '/picture-list',
-                    'middleware'      => 'Application\\Middleware\\Route\\PictureListMiddleware',
+                    'middleware'      => 'Application\\Action\\PictureListAction',
                     'allowed_methods' => ['GET'],
                 ],
                 [
                     'path'            => '/picture-list/{page}',
-                    'middleware'      => 'Application\\Middleware\\Route\\PictureListMiddleware',
+                    'middleware'      => 'Application\\Action\\PictureListAction',
                     'allowed_methods' => ['GET'],
                     'options'         => [
                         'tokens' => ['page' => '\d+']
@@ -45,20 +45,19 @@ return [
             ],
             'zend-expressive' => [
                 'error_handler' => [
-                    'template_404'   => 'error::404-error',
-                    'template_error' => 'error::error',
+                    'template_404'   => 'error::404',
+                    'template_error' => 'error::internal',
                 ],
             ],
             'middleware_pipeline' => [
                 'pre_routing' => [
-                    [ 'middleware' => 'Application\\Middleware\\Pipe\\CacheMiddleware' ],
+                    [ 'middleware' => 'Application\\Middleware\\CacheMiddleware' ],
                 ],
             ],
             'application' => [
-                'results_per_page' => 24,
                 'cache_path'       => 'cache/',
+                'results_per_page' => 24,
                 'apod_api'         => [
-                    'api_key'    => 'DEMO-KEY',
                     'store_path' => 'public/apod',
                     'base_url'   => '/apod',
                 ],
@@ -66,3 +65,4 @@ return [
         ],
     ],
 ];
+
