@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Container;
+namespace App;
 
 use AndrewCarterUK\APOD\API;
 use GuzzleHttp\Client;

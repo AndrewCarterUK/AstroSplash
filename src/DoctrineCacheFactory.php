@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\Container;
+namespace App;
 
 use Doctrine\Common\Cache\FilesystemCache;
 use Interop\Container\ContainerInterface;
 
-class CacheFactory
+class DoctrineCacheFactory
 {
     public function __invoke(ContainerInterface $container)
     {

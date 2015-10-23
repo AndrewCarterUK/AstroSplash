@@ -3,11 +3,13 @@
 use Zend\ServiceManager\Config;
 use Zend\ServiceManager\ServiceManager;
 
-$config = [];
+// Load configuration
+$config = require 'config.php';
 
-foreach (glob('config/container.{global,local}.php', GLOB_BRACE) as $file) {
-    $config = array_replace_recursive($config, include $file);
-}
+// Build container
+$container = new ServiceManager(new Config($config['dependencies']));
 
-return new ServiceManager(new Config($config));
+// Inject config
+$container->setService('config', $config);
 
+return $container;

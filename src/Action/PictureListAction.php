@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Action;
+namespace App\Action;
 
 use AndrewCarterUK\APOD\APIInterface;
 use Psr\Http\Message\ServerRequestInterface;

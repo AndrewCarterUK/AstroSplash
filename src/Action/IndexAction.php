@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Action;
+namespace App\Action;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -19,6 +19,8 @@ class IndexAction implements MiddlewareInterface
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        return new HtmlResponse($this->templateRenderer->render('app::index'));
+        $html = $this->templateRenderer->render('app::index');
+        $response = new HtmlResponse($html);
+        return $response->withHeader('Cache-Control', ['public', 'max-age=3600']);
     }
 }
