@@ -1,15 +1,15 @@
 <?php
 
-namespace Application\Container\Action;
+namespace App\Action;
 
-use Application\Action\PictureListAction;
+use AndrewCarterUK\APOD\APIInterface;
 use Interop\Container\ContainerInterface;
 
-class PictureListActionFactory
+class PictureListFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $apodApi = $container->get('AndrewCarterUK\\APOD\\APIInterface');
+        $apodApi = $container->get(APIInterface::class);
         $config  = $container->get('config');
 
         if (!isset($config['application']['results_per_page'])) {

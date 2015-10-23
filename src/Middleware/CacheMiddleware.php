@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Middleware;
+namespace App\Middleware;
 
 use Doctrine\Common\Cache\Cache;
 use Psr\Http\Message\ResponseInterface;
