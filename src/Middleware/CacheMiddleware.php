@@ -38,44 +38,49 @@ class CacheMiddleware implements MiddlewareInterface
 
     private function getCachedResponse(ServerRequestInterface $request, ResponseInterface $response)
     {
-        if ('GET' === $request->getMethod()) {
-            $item = $this->cache->fetch($this->getCacheKey($request));
-
-            if (false !== $item) {
-                $response->getBody()->write($item['body']);
-
-                foreach ($item['headers'] as $name => $value) {
-                    $response = $response->withHeader($name, $value);
-                }
-
-                return $response;
-            }
+        if ('GET' !== $request->getMethod()) {
+            return null;
         }
 
-        return null;
+        $item = $this->cache->fetch($this->getCacheKey($request));
+
+        if (false === $item) {
+            return null;
+        }
+
+        $response->getBody()->write($item['body']);
+
+        foreach ($item['headers'] as $name => $value) {
+            $response = $response->withHeader($name, $value);
+        }
+
+        return $response;
     }
 
     private function cacheResponse(ServerRequestInterface $request, ResponseInterface $response)
     {
-        if ('GET' === $request->getMethod() && $response->hasHeader('Cache-Control')) {
-            $cacheControl = $response->getHeader('Cache-Control');
+        if ('GET' !== $request->getMethod() || !$response->hasHeader('Cache-Control')) {
+            return;
+        }
 
-            $abortTokens = array('private', 'no-cache', 'no-store');
+        $cacheControl = $response->getHeader('Cache-Control');
 
-            if (count(array_intersect($abortTokens, $cacheControl)) > 0) {
+        $abortTokens = array('private', 'no-cache', 'no-store');
+
+        if (count(array_intersect($abortTokens, $cacheControl)) > 0) {
+            return;
+        }
+
+        foreach ($cacheControl as $value) {
+            $parts = explode('=', $value);
+
+            if (count($parts) == 2 && 'max-age' === $parts[0]) {
+                $this->cache->save($this->getCacheKey($request), [
+                    'body'    => (string) $response->getBody(),
+                    'headers' => $response->getHeaders(),
+                ], intval($parts[1]));
+
                 return;
-            }
-
-            foreach ($cacheControl as $value) {
-                $parts = explode('=', $value);
-
-                if (count($parts) == 2 && 'max-age' === $parts[0]) {
-                    $this->cache->save($this->getCacheKey($request), [
-                        'body'    => (string) $response->getBody(),
-                        'headers' => $response->getHeaders(),
-                    ], intval($parts[1]));
-                    break;
-                }
             }
         }
     }

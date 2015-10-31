@@ -17,8 +17,8 @@
         "zendframework/zend-servicemanager": "^2.5",
         "ocramius/proxy-manager": "^1.0",
         "zendframework/zend-expressive-platesrenderer": "^0.2",
-        "doctrine/cache": "^1.4",
-        "andrewcarteruk/astronomy-picture-of-the-day": "*@dev"
+        "doctrine/cache": "^1.5",
+        "andrewcarteruk/astronomy-picture-of-the-day": "^0.1"
     },
     "require-dev": {
         "composer/composer": ">=1.0.0-alpha10",

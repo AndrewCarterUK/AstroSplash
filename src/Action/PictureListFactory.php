@@ -4,6 +4,7 @@ namespace App\Action;
 
 use AndrewCarterUK\APOD\APIInterface;
 use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 
 class PictureListFactory
 {
@@ -13,7 +14,7 @@ class PictureListFactory
         $config  = $container->get('config');
 
         if (!isset($config['application']['results_per_page'])) {
-            throw new \RuntimeException('results_per_page must be set in application configuration');
+            throw new ServiceNotCreatedException('results_per_page must be set in application configuration');
         }
 
         return new PictureListAction($apodApi, $config['application']['results_per_page']);

@@ -22,7 +22,7 @@ class PictureListAction implements MiddlewareInterface
     {
         $page     = intval($request->getAttribute('page')) ?: 0;
         $pictures = $this->apodApi->getPage($page, $this->resultsPerPage);
-        
+
         $response->getBody()->write(json_encode($pictures));
 
         return $response
