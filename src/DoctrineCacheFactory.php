@@ -4,6 +4,7 @@ namespace App;
 
 use Doctrine\Common\Cache\FilesystemCache;
 use Interop\Container\ContainerInterface;
+use Zend\ServiceManager\Exception\ServiceNotCreatedException;
 
 class DoctrineCacheFactory
 {
@@ -12,7 +13,7 @@ class DoctrineCacheFactory
         $config = $container->get('config');
 
         if (!isset($config['application']['cache_path'])) {
-            throw new \RuntimeException('cache_path must be set in application configuration');
+            throw new ServiceNotCreatedException('cache_path must be set in application configuration');
         }
 
         return new FilesystemCache($config['application']['cache_path']);

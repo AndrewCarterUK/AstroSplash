@@ -5,8 +5,11 @@ return [
         'invokables' => [
             Zend\Expressive\Router\RouterInterface::class => Zend\Expressive\Router\FastRouteRouter::class,
         ],
+        'factories' => [
+            App\Action\IndexAction::class => App\Action\IndexFactory::class,
+            App\Action\PictureListAction::class => App\Action\PictureListFactory::class,
+        ],
     ],
-
     'routes' => [
         [
             'name' => 'index',
@@ -15,17 +18,10 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
-            'path' => '/picture-list',
+            'name' => 'picture-list',
+            'path' => '/picture-list[/{page:\d+}]',
             'middleware' => App\Action\PictureListAction::class,
             'allowed_methods' => ['GET'],
-        ],
-        [
-            'path' => '/picture-list/{page}',
-            'middleware' => App\Action\PictureListAction::class,
-            'allowed_methods' => ['GET'],
-            'options' => [
-                'tokens' => ['page' => '\d+']
-            ],
-        ],
+       ],
     ],
 ];

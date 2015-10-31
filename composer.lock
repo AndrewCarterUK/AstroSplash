@@ -4,21 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "188cab656e66f444a1928c69f1982002",
-    "content-hash": "a615430f6441df531b96a086c3666f9d",
+    "hash": "90588fe398a707d90dab25d99b89f5d9",
+    "content-hash": "111426611fe667f2bb2877698d060f95",
     "packages": [
         {
             "name": "andrewcarteruk/astronomy-picture-of-the-day",
-            "version": "dev-master",
+            "version": "0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/AndrewCarterUK/astronomy-picture-of-the-day.git",
-                "reference": "dba07c525c5adade0a4340e8bc30731797355737"
+                "reference": "c99621d38311e6f229b5ae95a602350f4d973ab9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/AndrewCarterUK/astronomy-picture-of-the-day/zipball/dba07c525c5adade0a4340e8bc30731797355737",
-                "reference": "dba07c525c5adade0a4340e8bc30731797355737",
+                "url": "https://api.github.com/repos/AndrewCarterUK/astronomy-picture-of-the-day/zipball/c99621d38311e6f229b5ae95a602350f4d973ab9",
+                "reference": "c99621d38311e6f229b5ae95a602350f4d973ab9",
                 "shasum": ""
             },
             "require": {
@@ -29,8 +29,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "AndrewCarterUK\\APOD\\": "src/",
-                    "AndrewCarterUK\\APOD\\Test\\": "test/"
+                    "AndrewCarterUK\\APOD\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -44,7 +43,7 @@
                 }
             ],
             "description": "A wrapper for the Astronomy Picture of the Day API provided by NASA.",
-            "time": "2015-10-19 23:17:14"
+            "time": "2015-10-31 14:37:53"
         },
         {
             "name": "container-interop/container-interop",
@@ -75,16 +74,16 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "v1.4.2",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca"
+                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/8c434000f420ade76a07c64cbe08ca47e5c101ca",
-                "reference": "8c434000f420ade76a07c64cbe08ca47e5c101ca",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/eb8a73619af4f1c8711e2ce482f5de3643258a1f",
+                "reference": "eb8a73619af4f1c8711e2ce482f5de3643258a1f",
                 "shasum": ""
             },
             "require": {
@@ -105,8 +104,8 @@
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Cache\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -141,7 +140,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-08-31 12:36:41"
+            "time": "2015-10-28 11:27:45"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -593,7 +592,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/43ac5a3afcae6ab9ec1a4cb193c9c9a995d9e1df",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/583b8eba0bcc0ac9aa8e7309e5313c068dbfbe30",
                 "reference": "43ac5a3afcae6ab9ec1a4cb193c9c9a995d9e1df",
                 "shasum": ""
             },
@@ -2700,7 +2699,6 @@
     "stability-flags": {
         "roave/security-advisories": 20,
         "zendframework/zend-expressive": 5,
-        "andrewcarteruk/astronomy-picture-of-the-day": 20,
         "composer/composer": 15
     },
     "prefer-stable": false,
