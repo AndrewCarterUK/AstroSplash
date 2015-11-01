@@ -41,7 +41,18 @@
     <script type="text/javascript">
         var requestInProgress = false;
         var currentPage = 0;
+
+        function checkBottom() {
+            if($(window).scrollTop() + $(window).height() > $(document).height() - 100) {
+                $('#more').click();
+            }
+        }
+
         $(document).ready(function () {
+            $(window).scroll(function () {
+                checkBottom();
+            });
+
             $('#more').click(function () {
                 if (requestInProgress) return;
                 requestInProgress = true;
@@ -56,10 +67,10 @@
                                     '</a>',
                                 '</div>'
                             ].join(''));
-    
+
                             $('#' + date).click(function (event) {
                                 event.preventDefault();
-  
+
                                 $('#modal-title').text(picture.title);
                                 $('#modal-image').attr('src', picture.url);
                                 $('#modal-caption').text(picture.explanation);
@@ -67,6 +78,8 @@
                             });
                         }
                     });
+
+                    checkBottom();
                 });
             }).click();
         });
