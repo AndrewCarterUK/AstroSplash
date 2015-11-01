@@ -57,6 +57,10 @@
                 if (requestInProgress) return;
                 requestInProgress = true;
                 $.get('/picture-list/' + currentPage, function (data) {
+                    if (data.length < 1) {
+                        return;
+                    }
+
                     currentPage++; requestInProgress = false;
                     $.each(data, function (date, picture) {
                         if (picture.media_type == 'image') {
