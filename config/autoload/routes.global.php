@@ -10,6 +10,7 @@ return [
             App\Action\PictureListAction::class => App\Action\PictureListFactory::class,
         ],
     ],
+
     'routes' => [
         [
             'name' => 'index',
@@ -22,6 +23,6 @@ return [
             'path' => '/picture-list[/{page:\d+}]',
             'middleware' => App\Action\PictureListAction::class,
             'allowed_methods' => ['GET'],
-       ],
+        ],
     ],
 ];
