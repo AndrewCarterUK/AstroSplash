@@ -65,7 +65,7 @@ class CacheMiddleware implements MiddlewareInterface
 
         $cacheControl = $response->getHeader('Cache-Control');
 
-        $abortTokens = array('private', 'no-cache', 'no-store');
+        $abortTokens = ['private', 'no-cache', 'no-store'];
 
         if (count(array_intersect($abortTokens, $cacheControl)) > 0) {
             return;

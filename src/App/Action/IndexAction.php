@@ -24,6 +24,8 @@ class IndexAction implements MiddlewareInterface
 
         $html = $this->templateRenderer->render('app::index');
         $response->getBody()->write($html);
-        return $response->withHeader('Content-Type', 'text/html')->withHeader('Cache-Control', ['public', 'max-age=3600']);
+        return $response
+                ->withHeader('Content-Type', 'text/html')
+                ->withHeader('Cache-Control', ['public', 'max-age=3600']);
     }
 }
